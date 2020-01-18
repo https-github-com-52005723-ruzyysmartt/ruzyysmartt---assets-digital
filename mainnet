@@ -1,0 +1,288 @@
+$# panoramix decompile complite                          code json source  ABI           Owned by:ruzyysmartt
+
+ ruzyysmartt@gmail.com
+
+App ID: 50572
+
+Url: https://github.com/ruzyysmartt/panoramix
+
+Client ID: Iv1.8a73b28dfeeeac4d
+
+content:true
+
+Client secret: f96f98ac47e0b993834443a59b8ec85018785855
+Create Login from:ruzyysmartt                id:52005723+ruzyysmartt email: ruzyysmartt@gmail. com                            account: github.com/ruzyysmartt                     https://github.com/ruzyysmartt.gits       content: panoramix decompile reposentory node: json sourse code  web 3 ABI                             owned : ruzyysmartt  ( news owned contract)                                                                        ##                           Panoramix JSON output
+
+for easy automated analysis
+
+addr: 0xde0B295669a9FD93d5F28D9Ec85E40f4cb697BAe
+
+network: mainnet
+
+ver: 26 Apr 2019
+
+problems: {'0x173825d9': 'removeOwner(address _owner)', '0x7065cb48': 'addOwner(address _owner)'}
+
+source: /code/0xde0B295669a9FD93d5F28D9Ec85E40f4cb697BAe.json
+
+also available through BigQuery
+
+stor_defs:
+
+  [def, "m_required", 0, [mask, 256, 0]]
+
+  [def, "m_numOwners", 1, [mask, 256, 0]]
+
+  [def, "stor2", 2, [array, "struct"]]
+
+  [def, "stor258", 258, [mapping, 256]]
+
+  [def, "stor259", 259, [mapping, "struct"]]
+
+  [def, "stor260", 260, [array, 256]]
+
+  [def, "m_dailyLimit", 261, [mask, 256, 0]]
+
+  [def, "stor262", 262, [mask, 256, 0]]
+
+  [def, "stor263", 263, [mask, 256, 0]]
+
+  [def, "stor264", 264, [mapping, "struct"]]
+
+functions:
+
+  def m_required(): # 0x746c9171 payable
+
+    [return, [stor, 256, 0, [name, "m_required", 0]]], 
+
+  def m_numOwners(): # 0x4123cb6b payable
+
+    [return, [stor, 256, 0, [name, "m_numOwners", 1]]], 
+
+  def m_dailyLimit(): # 0xf1736d86 payable
+
+    [return, [stor, 256, 0, [name, "m_dailyLimit", 261]]], 
+
+  def isOwner(address _owner): # 0x2f54bf6e payable
+
+    [return, [gt, [stor, 256, 0, [map, [mask_shl, 160, 0, 96, [param, "_owner"]], [loc, 258]]], 0]], 
+
+  def _fallback(): # payable
+
+    [if, [le, "callvalue", 0], [
+
+      [stop], 
+
+    ],[
+
+      [log, [data, "caller", "callvalue"], 0xe1fffcc4923d04b559f4d29a8bfc6cda04eb5b0d3c460751c2402c5c5cc9109c], 
+
+      [stop], 
+
+    ] 
+
+  def hasConfirmed(bytes32 _operation, address _owner): # 0xc2cf7326 payable
+
+    [if, [iszero, [eq, 0, [stor, 256, 0, [map, [mask_shl, 160, 0, 96, [param, "_owner"]], [loc, 258]]]]], [
+
+      [if, [iszero, [eq, 0, [and, [exp, 2, [stor, 256, 0, [map, [mask_shl, 160, 0, 96, [param, "_owner"]], [loc, 258]]]], [stor, 256, 256, [map, [param, "_operation"], [loc, 259]]]]]], [
+
+        [return, 1], 
+
+      ],[
+
+        [return, 0], 
+
+      ] 
+
+    ],[
+
+      [return, 0], 
+
+    ] 
+
+  def revoke(bytes32 _operation): # 0xb75c7dc6 payable
+
+    [if, [iszero, [eq, 0, [stor, 256, 0, [map, [mask_shl, 160, 0, 96, "caller"], [loc, 258]]]]], [
+
+      [if, [le, [and, [exp, 2, [stor, 256, 0, [map, [mask_shl, 160, 0, 96, "caller"], [loc, 258]]]], [stor, 256, 256, [map, [param, "_operation"], [loc, 259]]]], 0], [
+
+        [stop], 
+
+      ],[
+
+        [store, 256, 0, [map, [param, "_operation"], [loc, 259]], [add, 1, [stor, 256, 0, [map, [param, "_operation"], [loc, 259]]]]], 
+
+        [store, 256, 256, [map, [param, "_operation"], [loc, 259]], [add, [stor, 256, 256, [map, [param, "_operation"], [loc, 259]]], [mul, -1, [exp, 2, [stor, 256, 0, [map, [mask_shl, 160, 0, 96, "caller"], [loc, 258]]]]]]], 
+
+        [log, [data, "caller", [param, "_operation"]], 0xc7fb647e59b18047309aa15aad418e5d7ca96d173ad704f1031a2c3d7591734b], 
+
+        [stop], 
+
+      ] 
+
+    ],[
+
+      [stop], 
+
+    ] 
+
+  def kill(address _to): # 0xcbf0b0c0 payable
+
+    [if, [iszero, [eq, 0, [stor, 256, 0, [map, [mask_shl, 160, 0, 96, "caller"], [loc, 258]]]]], [
+
+      [if, [iszero, [iszero, [stor, 256, 0, [map, [data, [call.data, 0, "calldatasize"]], [loc, 259]]]]], [
+
+        [if, [iszero, [eq, 0, [and, [exp, 2, [stor, 256, 0, [map, [mask_shl, 160, 0, 96, "caller"], [loc, 258]]]], [stor, 256, 256, [map, [data, [call.data, 0, "calldatasize"]], [loc, 259]]]]]], [
+
+          [stop], 
+
+        ],[
+
+          [log, [data, "caller", [sha3, [call.data, 0, "calldatasize"]]], 0xe1c52dc63b719ade82e8bea94cc41a0d5d28e4aaf536adb5e9cccc9ff8c1aeda], 
+
+          [if, [gt, [stor, 256, 0, [map, [data, [call.data, 0, "calldatasize"]], [loc, 259]]], 1], [
+
+            [store, 256, 0, [map, [data, [call.data, 0, "calldatasize"]], [loc, 259]], [add, -1, [stor, 256, 0, [map, [data, [call.data, 0, "calldatasize"]], [loc, 259]]]]], 
+
+            [store, 256, 256, [map, [data, [call.data, 0, "calldatasize"]], [loc, 259]], [or, [exp, 2, [stor, 256, 0, [map, [mask_shl, 160, 0, 96, "caller"], [loc, 258]]]], [stor, 256, 256, [map, [data, [call.data, 0, "calldatasize"]], [loc, 259]]]]], 
+
+            [stop], 
+
+          ],[
+
+            [if, [ge, [stor, 256, 512, [map, [data, [call.data, 0, "calldatasize"]], [loc, 259]]], [stor, 256, 0, [length, [loc, 260]]]], [
+
+              [invalid, "jump"], 
+
+            ],[
+
+              [store, 256, 0, [add, [code.data, 3859, 32], [stor, 256, 512, [map, [data, [call.data, 0, "calldatasize"]], [loc, 259]]]], 0], 
+
+              [store, 256, 0, [map, [data, [call.data, 0, "calldatasize"]], [loc, 259]], 0], 
+
+              [store, 256, 256, [map, [data, [call.data, 0, "calldatasize"]], [loc, 259]], 0], 
+
+              [store, 256, 512, [map, [data, [call.data, 0, "calldatasize"]], [loc, 259]], 0], 
+
+              [selfdestruct, [param, "_to"]], 
+
+            ] 
+
+          ] 
+
+        ] 
+
+      ],[
+
+        [store, 256, 0, [map, [data, [call.data, 0, "calldatasize"]], [loc, 259]], [stor, 256, 0, [name, "m_required", 0]]], 
+
+        [store, 256, 256, [map, [data, [call.data, 0, "calldatasize"]], [loc, 259]], 0], 
+
+        [store, 256, 0, [length, [loc, 260]], [add, 1, [stor, 256, 0, [length, [loc, 260]]]]], 
+
+        [if, [gt, [iszero, [stor, 256, 0, [length, [loc, 260]]]], [add, 1, [stor, 256, 0, [length, [loc, 260]]]]], [
+
+          [store, 256, 512, [map, [data, [call.data, 0, "calldatasize"]], [loc, 259]], [stor, 256, 0, [length, [loc, 260]]]], 
+
+          [if, [ge, [stor, 256, 0, [length, [loc, 260]]], [stor, 256, 0, [length, [loc, 260]]]], [
+
+            [invalid, "jump"], 
+
+          ],[
+
+            [store, 256, 0, [add, [code.data, 3859, 32], [stor, 256, 0, [length, [loc, 260]]]], [sha3, [call.data, 0, "calldatasize"]]], 
+
+            [if, [iszero, [eq, 0, [and, [exp, 2, [stor, 256, 0, [map, [mask_shl, 160, 0, 96, "caller"], [loc, 258]]]], [stor, 256, 256, [map, [data, [call.data, 0, "calldatasize"]], [loc, 259]]]]]], [
+
+              [stop], 
+
+            ],[
+
+              [log, [data, "caller", [sha3, [call.data, 0, "calldatasize"]]], 0xe1c52dc63b719ade82e8bea94cc41a0d5d28e4aaf536adb5e9cccc9ff8c1aeda], 
+
+              [if, [gt, [stor, 256, 0, [map, [data, [call.data, 0, "calldatasize"]], [loc, 259]]], 1], [
+
+                [store, 256, 0, [map, [data, [call.data, 0, "calldatasize"]], [loc, 259]], [add, -1, [stor, 256, 0, [map, [data, [call.data, 0, "calldatasize"]], [loc, 259]]]]], 
+
+                [store, 256, 256, [map, [data, [call.data, 0, "calldatasize"]], [loc, 259]], [or, [exp, 2, [stor, 256, 0, [map, [mask_shl, 160, 0, 96, "caller"], [loc, 258]]]], [stor, 256, 256, [map, [data, [call.data, 0, "calldatasize"]], [loc, 259]]]]], 
+
+                [stop], 
+
+              ],[
+
+                [if, [ge, [stor, 256, 512, [map, [data, [call.data, 0, "calldatasize"]], [loc, 259]]], [stor, 256, 0, [length, [loc, 260]]]], [
+
+                  [invalid, "jump"], 
+
+                ],[
+
+                  [store, 256, 0, [add, [code.data, 3859, 32], [stor, 256, 512, [map, [data, [call.data, 0, "calldatasize"]], [loc, 259]]]], 0], 
+
+                  [store, 256, 0, [map, [data, [call.data, 0, "calldatasize"]], [loc, 259]], 0], 
+
+                  [store, 256, 256, [map, [data, [call.data, 0, "calldatasize"]], [loc, 259]], 0], 
+
+                  [store, 256, 512, [map, [data, [call.data, 0, "calldatasize"]], [loc, 259]], 0], 
+
+                  [selfdestruct, [param, "_to"]], 
+
+                ] 
+
+              ] 
+
+            ] 
+
+          ] 
+
+        ],[
+
+          [while, [gt, [stor, 256, 0, [length, [loc, 260]]], [var, 0]], [
+
+            [store, 256, 0, [array, [var, 0], [loc, 260]], 0], 
+
+            [continue, "id2230", [[setvar, 0, [add, 1, [var, 0]]]]], 
+
+          "id2230" , [[setvar, 0, [add, 1, [stor, 256, 0, [length, [loc, 260]]]]]] ], # end of while, setvars here go in front of the loop
+
+          [store, 256, 512, [map, [data, [call.data, 0, "calldatasize"]], [loc, 259]], [stor, 256, 0, [length, [loc, 260]]]], 
+
+          [if, [ge, [stor, 256, 0, [length, [loc, 260]]], [stor, 256, 0, [length, [loc, 260]]]], [
+
+            [invalid, "jump"], 
+
+          ],[
+
+            [store, 256, 0, [add, [code.data, 3859, 32], [stor, 256, 0, [length, [loc, 260]]]], [sha3, [call.data, 0, "calldatasize"]]], 
+
+            [if, [iszero, [eq, 0, [and, [exp, 2, [stor, 256, 0, [map, [mask_shl, 160, 0, 96, "caller"], [loc, 258]]]], [stor, 256, 256, [map, [data, [call.data, 0, "calldatasize"]], [loc, 259]]]]]], [
+
+              [stop], 
+
+            ],[
+
+              [log, [data, "caller", [sha3, [call.data, 0, "calldatasize"]]], 0xe1c52dc63b719ade82e8bea94cc41a0d5d28e4aaf536adb5e9cccc9ff8c1aeda], 
+
+              [if, [gt, [stor, 256, 0, [map, [data, [call.data, 0, "calldatasize"]], [loc, 259]]], 1], [
+
+                [store, 256, 0, [map, [data, [call.data, 0, "calldatasize"]], [loc, 259]], [add, -1, [stor, 256, 0, [map, [data, [call.data, 0, "calldatasize"]], [loc, 259]]]]], 
+
+                [store, 256, 256, [map, [data, [call.data, 0, "calldatasize"]], [loc, 259]], [or, [exp, 2, [stor, 256, 0, [map, [mask_shl, 160, 0, 96, "caller"], [loc, 258]]]], [stor, 256, 256, [map, [data, [call.data, 0, "calldatasize"]], [loc, 259]]]]], 
+
+                [stop], 
+
+              ],[
+
+                [if, [ge, [stor, 256, 512, [map, [data, [call.data, 0, "calldatasize"]], [loc, 259]]], [stor, 256, 0, [length, [loc, 260]]]], [
+
+                  [invalid, "jump"], 
+
+                ],[
+
+                  [store, 256, 0, [add, [code.data, 3859, 32], [stor, 256, 512, [map, [data, [call.data, 0, "calldatasize"]], [loc, 259]]]], 0], 
+
+                  [store, 256, 0, [map, [data, [call.data, 0, "calldatasize"]], [loc, 259]], 0], 
+
+                  [store, 256, 256, [map, [data, [call.data, 0, "calldatasize"]], [loc, 259]], 0], 
+
+                  [store, 256, 512, [map, [data, [call.data, 0, "calldatasize"]], [loc,
